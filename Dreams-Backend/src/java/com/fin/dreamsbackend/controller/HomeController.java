@@ -6,6 +6,8 @@ package com.fin.dreamsbackend.controller;
 
 import com.fin.dreamsbackend.formbean.FormBean;
 import com.fin.dreamsbackend.service.impl.HomeServiceImpl;
+import java.util.HashMap;
+import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -35,7 +37,9 @@ public class HomeController {
 
     @RequestMapping(value = "/registerUser", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity registerUser(@RequestBody FormBean formBean) {
-        return new ResponseEntity(homeServiceImpl.registerUser(formBean), HttpStatus.OK);
+        Map map = new HashMap();
+        map.put("data", homeServiceImpl.registerUser(formBean));
+        return new ResponseEntity(map, HttpStatus.OK);
     }
 
 }

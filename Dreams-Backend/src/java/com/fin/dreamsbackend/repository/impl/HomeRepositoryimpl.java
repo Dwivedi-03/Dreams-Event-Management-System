@@ -24,6 +24,11 @@ public class HomeRepositoryimpl implements HomeRepository {
         list.add("Jyoti");
         list.add("Smita");
         list.add("Rupa");
+        list.add("username: " + formBean.getUsername());
+        list.add("password: " + formBean.getPassword());
+        list.add("email: " + formBean.getEmail());
+        list.add("firstname: " + formBean.getFirstName());
+        list.add("lastname: " + formBean.getLastName());
         return list;
     }
 }
