@@ -4,10 +4,12 @@
  */
 package com.fin.dreamsbackend.repository.impl;
 
+import com.fin.dreamsbackend.database.SQLUtility;
 import com.fin.dreamsbackend.formbean.FormBean;
 import com.fin.dreamsbackend.repository.HomeRepository;
 import java.util.ArrayList;
 import java.util.List;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 /**
@@ -17,18 +19,22 @@ import org.springframework.stereotype.Repository;
 @Repository
 public class HomeRepositoryimpl implements HomeRepository {
 
+    @Autowired
+    SQLUtility SQLUtility;
+
     @Override
-    public List registerUser(FormBean formBean) {
+    public int registerUser(FormBean formBean) {
 
         List list = new ArrayList();
-        list.add("Jyoti");
-        list.add("Smita");
-        list.add("Rupa");
-        list.add("username: " + formBean.getUsername());
-        list.add("password: " + formBean.getPassword());
-        list.add("email: " + formBean.getEmail());
-        list.add("firstname: " + formBean.getFirstName());
-        list.add("lastname: " + formBean.getLastName());
-        return list;
+        StringBuilder query = new StringBuilder("INSERT INTO users(username, email, password, first_name, last_name, date_of_birth) VALUES('");
+        query.append(formBean.getUsername()).append("', '");
+        query.append(formBean.getEmail()).append("', '");
+        query.append(formBean.getPassword()).append("', '");
+        query.append(formBean.getFirstName()).append("', '");
+        query.append(formBean.getLastName()).append("', '");
+        query.append(formBean.getDateOfBirth()).append("');");
+
+        return SQLUtility.persist(query.toString());
+
     }
 }

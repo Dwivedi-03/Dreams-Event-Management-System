@@ -7,7 +7,6 @@ package com.fin.dreamsbackend.service.impl;
 import com.fin.dreamsbackend.formbean.FormBean;
 import com.fin.dreamsbackend.repository.impl.HomeRepositoryimpl;
 import com.fin.dreamsbackend.service.HomeService;
-import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -22,7 +21,7 @@ public class HomeServiceImpl implements HomeService {
     HomeRepositoryimpl HomeRepositoryimpl;
 
     @Override
-    public List registerUser(FormBean formBean) {
+    public int registerUser(FormBean formBean) {
         return HomeRepositoryimpl.registerUser(formBean);
     }
 }

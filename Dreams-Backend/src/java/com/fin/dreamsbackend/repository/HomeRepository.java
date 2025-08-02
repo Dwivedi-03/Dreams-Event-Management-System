@@ -5,7 +5,6 @@
 package com.fin.dreamsbackend.repository;
 
 import com.fin.dreamsbackend.formbean.FormBean;
-import java.util.List;
 
 /**
  *
@@ -13,5 +12,5 @@ import java.util.List;
  */
 public interface HomeRepository {
 
-    public List registerUser(FormBean formBean);
+    public int registerUser(FormBean formBean);
 }
