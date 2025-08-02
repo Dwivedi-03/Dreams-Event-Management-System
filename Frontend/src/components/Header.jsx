@@ -20,7 +20,7 @@ function Header() {
               </Link>
               <Link
                 to="register"
-                className="bg-red-500 text-white p-2 rounded hover:bg-red-600 font-medium text-sm px-4 lg:px-5 py-2 lg:py-2.5 mr-2"
+                className="bg-[#431407] text-white p-2 rounded font-medium text-sm px-4 lg:px-5 py-2 lg:py-2.5 mr-2"
               >
                 Get Started
               </Link>

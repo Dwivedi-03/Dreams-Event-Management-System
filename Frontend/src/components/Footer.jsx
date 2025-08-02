@@ -17,7 +17,7 @@ function Footer() {
         <div className="bg-white border border-secondary h-40"></div>
         <div className="bg-white border border-secondary h-40"></div>
       </div>
-      <footer className="h-auto lg:h-96 bg-secondary text-white py-2.5 px-4">
+      <footer className="h-auto lg:h-96 bg-gray-800 text-white py-2.5 px-4">
         <div className="h-[30%] border-b border-white grid grid-cols-1 md:grid-cols-3 py-4 lg:py-0">
           <div className="col-span-2 grid grid-cols-1 lg:grid-cols-2 gap-8">
             <div className="flex flex-col justify-center items-center lg:items-end">
