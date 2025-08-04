@@ -4,16 +4,16 @@
  */
 package com.fin.dreamsbackend.controller;
 
-//import com.fin.dreamsbackend.formbean.FormBean;
-//import com.fin.dreamsbackend.service.impl.HomeServiceImpl;
-//import java.util.HashMap;
-//import java.util.Map;
-//import org.springframework.beans.factory.annotation.Autowired;
+import com.fin.dreamsbackend.formbean.FormBean;
+import com.fin.dreamsbackend.service.impl.HomeServiceImpl;
+import java.util.HashMap;
+import java.util.Map;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
-//import org.springframework.http.MediaType;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
-//import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
@@ -27,38 +27,38 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping(value = "/api/v1")
 public class HomeController {
 
-//    @Autowired
-//    HomeServiceImpl homeServiceImpl;
+    @Autowired
+    HomeServiceImpl homeServiceImpl;
 
     @RequestMapping(value = "/test", method = RequestMethod.GET)
     public ResponseEntity test() {
         return new ResponseEntity("Hello World!", HttpStatus.OK);
     }
 
-//    @RequestMapping(value = "/registerUser", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
-//    public ResponseEntity registerUser(@RequestBody FormBean formBean) {
-//        Map map = new HashMap();
-//        try {
-//            if (homeServiceImpl.registerUser(formBean) > 0) {
-//                map.put("status", "true");
-//                map.put("message", "User registered successfully!");
-//                map.put("data", homeServiceImpl.registerUser(formBean));
-//            } else {
-//                map.put("status", "true");
-//                map.put("message", "Something went wrong!");
-//                map.put("data", new HashMap());
-//            }
-//        } catch (NullPointerException ex) {
-//            map.put("status", "false");
-//            map.put("message", ex.getMessage());
-//            map.put("data", new HashMap());
-//        } catch (Exception ex) {
-//            map.put("status", "false");
-//            map.put("message", ex.getMessage());
-//            map.put("data", new HashMap());
-//        }
-//
-//        return new ResponseEntity(map, HttpStatus.OK);
-//    }
+    @RequestMapping(value = "/registerUser", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity registerUser(@RequestBody FormBean formBean) {
+        Map map = new HashMap();
+        try {
+            if (homeServiceImpl.registerUser(formBean) > 0) {
+                map.put("status", "true");
+                map.put("message", "User registered successfully!");
+                map.put("data", homeServiceImpl.registerUser(formBean));
+            } else {
+                map.put("status", "true");
+                map.put("message", "Something went wrong!");
+                map.put("data", new HashMap());
+            }
+        } catch (NullPointerException ex) {
+            map.put("status", "false");
+            map.put("message", ex.getMessage());
+            map.put("data", new HashMap());
+        } catch (Exception ex) {
+            map.put("status", "false");
+            map.put("message", ex.getMessage());
+            map.put("data", new HashMap());
+        }
+
+        return new ResponseEntity(map, HttpStatus.OK);
+    }
 
 }

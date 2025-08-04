@@ -17,7 +17,7 @@ import org.springframework.stereotype.Repository;
  * @author Admin
  */
 @Repository
-public class HomeRepositoryimpl implements HomeRepository {
+public class HomeRepositoryImpl implements HomeRepository {
 
     @Autowired
     SQLUtility SQLUtility;
@@ -25,7 +25,7 @@ public class HomeRepositoryimpl implements HomeRepository {
     @Override
     public int registerUser(FormBean formBean) {
 
-        List list = new ArrayList();
+//        List list = new ArrayList();
         StringBuilder query = new StringBuilder("INSERT INTO users(username, email, password, first_name, last_name, date_of_birth) VALUES('");
         query.append(formBean.getUsername()).append("', '");
         query.append(formBean.getEmail()).append("', '");
