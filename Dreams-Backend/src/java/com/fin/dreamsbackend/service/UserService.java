@@ -14,4 +14,6 @@ import java.util.Map;
 public interface UserService {
 
     public Map<String, Object> registerUser(User user);
+
+    public Map<String, Object> loginUser(User user);
 }

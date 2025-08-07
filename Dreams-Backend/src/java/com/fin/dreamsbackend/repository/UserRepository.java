@@ -5,6 +5,7 @@
 package com.fin.dreamsbackend.repository;
 
 import com.fin.dreamsbackend.model.User;
+import java.util.List;
 
 /**
  *
@@ -15,4 +16,6 @@ public interface UserRepository {
     public int registerUser(User user);
 
     public boolean existsByUsername(String Username);
+
+    public List findByUsernameAndPassword(User user);
 }

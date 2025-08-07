@@ -9,6 +9,10 @@ import com.fin.dreamsbackend.model.User;
 import org.springframework.stereotype.Repository;
 import com.fin.dreamsbackend.repository.UserRepository;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 
 /**
@@ -46,4 +50,18 @@ public class UserRepositoryImpl implements UserRepository {
         }
     }
 
+    @Override
+    public List findByUsernameAndPassword(User user) {
+        StringBuilder sql = new StringBuilder("SELECT * FROM users WHERE Username = '");
+        sql.append(user.getUsername()).append("' AND Password = '");
+        sql.append(user.getPassword()).append("' ");
+
+        List emptyList = new ArrayList();
+        try {
+            return sqlutility.getList(sql.toString());
+        } catch (SQLException ex) {
+            emptyList.add(ex.getMessage());
+            return emptyList;
+        }
+    }
 }

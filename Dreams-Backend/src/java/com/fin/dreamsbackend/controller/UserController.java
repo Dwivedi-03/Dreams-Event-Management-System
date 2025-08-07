@@ -34,7 +34,7 @@ public class UserController {
         return new ResponseEntity("Hello User", HttpStatus.OK);
     }
 
-    @RequestMapping(value = "/registerUser", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
+    @RequestMapping(value = "/register", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity registeruser(@RequestBody User user) {
         try {
             Map<String, Object> response = userService.registerUser(user);
@@ -43,6 +43,16 @@ public class UserController {
             return ResponseEntity.status(400).body(Map.of("message", "Missing required fields"));
         } catch (Exception ex) {
             return ResponseEntity.status(500).body(Map.of("message", "Something went wrong", "error", ex.getMessage()));
+        }
+    }
+
+    @RequestMapping(value = "/login", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity loginUser(@RequestBody User user) {
+        Map<String, Object> response = userService.loginUser(user);
+        if (!response.isEmpty() && (boolean) response.get("success")) {
+            return new ResponseEntity(response, HttpStatus.OK);
+        } else {
+            return new ResponseEntity(response, HttpStatus.BAD_REQUEST);
         }
     }
 

@@ -5,11 +5,13 @@
 package com.fin.dreamsbackend.service.impl;
 
 import com.fin.dreamsbackend.model.User;
-import com.fin.dreamsbackend.repository.impl.UserRepositoryImpl;
+import com.fin.dreamsbackend.repository.UserRepository;
 import com.fin.dreamsbackend.service.UserService;
 import java.time.LocalDate;
 import java.time.Period;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -22,7 +24,7 @@ import org.springframework.stereotype.Service;
 public class UserServiceImpl implements UserService {
 
     @Autowired
-    UserRepositoryImpl userRepository;
+    UserRepository userRepository;
 
     @Override
     public Map<String, Object> registerUser(User user) {
@@ -30,7 +32,7 @@ public class UserServiceImpl implements UserService {
 
         response.put("success", false);
         response.put("message", "");
-        response.put("data", "");
+        response.put("data", new ArrayList<>());
 
         LocalDate dob = LocalDate.parse(user.getDateOfBirth());
         LocalDate today = LocalDate.now();
@@ -78,4 +80,31 @@ public class UserServiceImpl implements UserService {
         return response;
     }
 
+    @Override
+    public Map<String, Object> loginUser(User user) {
+        Map<String, Object> response = new HashMap<>();
+
+        response.put("success", false);
+        response.put("message", "");
+        response.put("data", new ArrayList<>());
+
+        if (user.getUsername() == null || user.getUsername().trim().isEmpty()) {
+            response.put("message", "Username is requiured");
+        } else if (user.getPassword() == null || user.getPassword().trim().isEmpty()) {
+            response.put("message", "Password is required");
+        } else {
+            if (!userRepository.existsByUsername(user.getUsername())) {
+                response.put("message", "User does not exists");
+            }
+            List result = userRepository.findByUsernameAndPassword(user);
+            if (!result.isEmpty()) {
+                response.put("message", "Login successful");
+                response.put("data", result);
+            } else {
+                response.put("message", "Invalid credentials");
+            }
+        }
+        return response;
+    }
+    
 }
